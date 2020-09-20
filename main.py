@@ -1,4 +1,5 @@
 import cv2
+
 import dlib
 import numpy as np
 
@@ -10,7 +11,8 @@ from collections import OrderedDict
 capture = cv2.VideoCapture(0)
 
 facial_feature_coordinates = {}
-
+width = 600
+height = 478
 sp = "shape_predictor_68_face_landmarks.dat"
 predictor = dlib.shape_predictor(sp)
 detector = dlib.get_frontal_face_detector()
@@ -56,6 +58,9 @@ def facial_landmarks(image, shape, colors=None, alpha=0.75):
     cv2.line(overlay, (nose34[0],nose34[1]),
                       (jaw9[0],jaw9[1]),
                       (0,255,0))
+    cv2.line(overlay, (230, 200), (262, 200), (255, 127, 0), 3)
+    cv2.line(overlay, (330, 200), (362, 200), (255, 127, 0), 3)
+    cv2.ellipse(overlay, (300,140), (100,200), 0, 0, 180, 255, 2)
 
     cv2.addWeighted(overlay, alpha, output, 1 - alpha, 0, output)
 
